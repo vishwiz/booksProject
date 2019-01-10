@@ -1,18 +1,20 @@
 const express = require('express')
 let bodyParser = require('body-parser')
 const mongoose = require('mongoose')
+const path = require('path');
 let users = require('./models/users')
 let books = require('./models/book')
 const app = express()
 
 app.use(bodyParser.json())
+app.use(express.static(path.join(__dirname, '../client')));
 
 mongoose.connect('mongodb://localhost/booksProject', {
   useNewUrlParser: true
 })
-app.get('/', (req, res) => {
-  res.send('Do something....')
-})
+// app.get('/', (req, res) => {
+//   res.send('Do something....')
+// })
 app.get('/api/books',async(req,res)=>{
  try{
    let result = await books.getBooks();
@@ -26,12 +28,14 @@ app.get('/api/books',async(req,res)=>{
   //   res.send(data)
   // })
 })
-// app.get('/api/users', (req, res) => {
-//   users.getUserId(req.get('Referer'), (user,status) => {
-   
-//     res.status(status).send(user)
-//   })
-// })
+app.get('/api/users', async (req, res) => {
+  try{
+    let result = await  users.getUser(req.get('Referer'))
+    res.status(result['status']).send(result['message'])
+  }catch(err){
+    throw res.status(result['status']).send(result['message'])
+  }
+})
 
 app.post('/api/users', async (req, res) => {
  try{
@@ -66,7 +70,7 @@ app.post('/api/list/:checkData', async (req, res) => {
 app.delete('/api/list/:checkData/:_isbn', async (req, res) => {
   try{   
    let result= await users.userBooksDelete(req.get('Referer'),req.params._isbn,req.params.checkData)
-   
+   console.log(result)
    res.status(result['status']).send(result['message'])
   }catch(err){
     throw res.status(result['status']).send(result['message'])

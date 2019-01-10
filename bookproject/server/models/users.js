@@ -52,39 +52,63 @@ let validation = (user, _isbn) => {
         isbn: _isbn
     }, joiSchema)
 }
-
+//get user Validation
+// let getUserValidation = async (_user)=>{
+//     let validation = Joi.validate({
+//         username: newUser
+//     }, joiSchema)
+//     if (validation.error === null) {
+//         let userData = await users.findOne({
+//             user: newUser
+//         })
+//     }
+// }
 // user Validation
-let userValidation = (newUser) => {
+let addUserValidation = async (newUser) => {
     let validation = Joi.validate({
         username: newUser
     }, joiSchema)
     if (validation.error === null) {
-        let userData = users.findOne({
+        let userData = await users.findOne({
             user: newUser
         })
         if (userData === null) {
             return newUser
-        } else return {message:'User Name already exist',status:400}
-    } else return {message:'Invalid User Name',status:400}
+        } else return {message:JSON.stringify('User Name already exist'),status:400}
+    } else return {message:JSON.stringify('Invalid User Name'),status:400}
 }
-
+// user books validation
 let userBooksValidation = async (_user, _isbn) => {
     try {
         if (validation(_user, _isbn).error === null) {
             let booksData = await books.findOne({
                 isbn: _isbn
             })
-            if (booksData === null) {
-                return {message:'Not Available',status:400}
+            if (booksData === null){
+                return {message:JSON.stringify('Not Available'),status:400}
             } else {
                 let userData = await users.findOne({
                     user: _user
                 })
                 return userData
             }
-        } else return {message:'Worng Entry',status:400}
+        } else return {message:JSON.stringify('Worng Entry'),status:400}
     } catch (err) {
-        throw {message:"Internal Server Error",status:500}
+        throw {message:JSON.stringify("Internal Server Error"),status:500}
+    }
+}
+//get the user data
+module.exports.getUser = async (_user)=>{
+    try{
+       let userData = await users.findOne({
+           user:_user
+       })
+       if(userData!==null){
+        return{message:userData,status:200}
+       }else return{message:JSON.stringify(`${_user} don't Exist`),status:400}
+       
+    }catch(err){
+        throw {message:JSON.stringify("Internal Server Error"),status:500}
     }
 }
 
@@ -92,16 +116,16 @@ let userBooksValidation = async (_user, _isbn) => {
 module.exports.addUser = async (newUser) => {
 
     try {
-        let check = await userValidation(newUser)
+        let check = await addUserValidation(newUser)
 
         if (check === newUser) {
-            let createUser = await users.create({
+            await users.create({
                 user: newUser
             })
-            return {message:createUser,status:200}
+            return {message:JSON.stringify('Sign-up complete'),status:200}
         } else return check
     } catch (err) {
-        throw {message:"Internal Server Error",status:500}
+        throw {message:JSON.stringify("Internal Server Error"),status:500}
     }
 }
 
@@ -113,7 +137,7 @@ module.exports.userBooks = async (checkuser, checkData) => {
         })
         return {message:userData[checkData],status:200}
     } catch (err) {
-        throw {message:"Internal Server Error",status:500}
+        throw {message:JSON.stringify("Internal Server Error"),status:500}
     }
 }
 
@@ -130,13 +154,13 @@ module.exports.userBooksUpdate = async (_user, _isbn, checkData) => {
                     isbn: _isbn
                 })
                 await userData.save();
-                return {message:'Success',status:201}
-            } else return {message:'Already present',status:400}
+                return {message:JSON.stringify('Success'),status:201}
+            } else return {message:JSON.stringify('Already present'),status:400}
         } else return userData
 
     } catch (err) {
         
-        throw {message:"Internal Server Error",status:500}
+        throw {message:JSON.stringify("Internal Server Error"),status:500}
     }
 }
 
@@ -158,11 +182,11 @@ module.exports.userBooksDelete = async (_user, _isbn, checkData) => {
         await userData.save();
         if (userData[checkData].length !== length) {
 
-            return {message:userData[checkData],status:200}
-        } else return {message:"don't exist",status:400}
+            return {message:JSON.stringify('sucessfully deleted'),status:200}
+        } else return {message:JSON.stringify("don't exist"),status:400}
 
     } catch (err) {
 
-        throw {message:"Internal Server Error",status:500}
+        throw {message:JSON.stringify("Internal Server Error"),status:500}
     }
 }
