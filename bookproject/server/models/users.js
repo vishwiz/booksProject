@@ -16,10 +16,7 @@ const joiSchema = Joi.object().keys({
     isbn: Joi.number()
 })
 
-
-
 let users = module.exports = mongoose.model('users', userSchema)
-// users.find().then(data=>console.log(data))
 
 //  users.insertMany(
 //      [
@@ -40,10 +37,6 @@ let users = module.exports = mongoose.model('users', userSchema)
 // ]
 // )
 
-// get all users data
-// module.exports.getUsers = (callbacks) => {
-//     users.find(callbacks)
-// }
 
 // joi Validation
 let validation = (user, _isbn) => {
@@ -52,17 +45,7 @@ let validation = (user, _isbn) => {
         isbn: _isbn
     }, joiSchema)
 }
-//get user Validation
-// let getUserValidation = async (_user)=>{
-//     let validation = Joi.validate({
-//         username: newUser
-//     }, joiSchema)
-//     if (validation.error === null) {
-//         let userData = await users.findOne({
-//             user: newUser
-//         })
-//     }
-// }
+
 // user Validation
 let addUserValidation = async (newUser) => {
     let validation = Joi.validate({

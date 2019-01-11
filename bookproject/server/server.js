@@ -5,16 +5,13 @@ const path = require('path');
 let users = require('./models/users')
 let books = require('./models/book')
 const app = express()
-
 app.use(bodyParser.json())
 app.use(express.static(path.join(__dirname, '../client')));
 
 mongoose.connect('mongodb://localhost/booksProject', {
   useNewUrlParser: true
 })
-// app.get('/', (req, res) => {
-//   res.send('Do something....')
-// })
+
 app.get('/api/books',async(req,res)=>{
  try{
    let result = await books.getBooks();
@@ -23,10 +20,6 @@ app.get('/api/books',async(req,res)=>{
  }catch(err){
   throw res.status(result['status']).send(result['message'])
  }
- 
-  // books.getBooks(data=>{
-  //   res.send(data)
-  // })
 })
 app.get('/api/users', async (req, res) => {
   try{
