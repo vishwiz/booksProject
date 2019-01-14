@@ -1,0 +1,202 @@
+.header{
+    display:flex;
+    justify-content: space-around;
+}
+/* body{
+    font-family: 'Pacifico', cursive; 
+}*/
+/* body , div{
+    border:2px red solid;
+} */
+.login-signup-section{
+    width: 45em;
+    height: 21em;
+    margin-top: 10em;
+   background-color:grey; 
+   opacity: 0.77;
+   border-radius: 20px;
+
+}
+.login-signup-section h1{
+    text-align: center;
+    font-size: 4em;
+    font-family: 'Righteous', cursive;
+    letter-spacing: 10px;
+}
+.login-signup-button{
+    text-align: right;
+}
+.login-signup-button input{
+    background-color: black;
+    color: whitesmoke;
+    font-size: 1.5em;
+    border: none;
+    margin-top: 1em;
+    width: 4em;
+    border-radius: 10px;
+    height: 2em;
+}
+.login{
+    display:flex;
+    justify-content: space-around;
+}
+.login-signup > #name,.login-signup > #username{
+    height: 3em;
+    width: 23em;
+    border:none;
+    border-radius: 1em;
+}
+.login-signup input{
+    text-align: center;
+}
+.fullscreen-bg {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    overflow: hidden;
+    z-index: -100;
+}
+
+.fullscreen-bg__video {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: auto;
+    height: auto;
+    min-width: 100%;
+    min-height: 100%;
+    transform: translate(-50%, -50%);
+    filter: blur(8px);
+}
+/* body div ,section{
+    border:1px solid black
+} */
+.main-section-book-list{
+    
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    height: calc(100vh - 10px);
+}
+.book-list-section{
+    display:grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-gap: 10px;
+   
+}
+
+.book-list-section img,.want-to-read img, .reading img, .read img{
+    height: 12em;
+    width: 9em;
+    padding-left: 0.5em;
+    border-top-right-radius: 20px;
+    border-bottom-right-radius: 20px;
+    box-shadow: 6px 3px rgb(19, 19, 19);
+    
+}
+.want-to-read,.reading,.read{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-gap: 18px;
+}
+.book-list-section h4{
+    padding:1em;
+    
+}
+.user-book-list h1{
+    font-family: 'Righteous', cursive;
+    color: teal;
+    letter-spacing: 10px;
+    font-size: 36px;
+    border-radius: 20px;
+    background: black;
+    width: 15em;
+    text-align: center;
+    
+}
+.user-book{
+    
+    opacity: 0.77;
+}
+.main-section{
+    display:none;
+}
+.search-input{
+    margin-top: 29px;
+    margin-bottom: 29px;
+}
+.search-input input{
+    width: 70%;
+    border-radius:20px;
+    opacity:0.77;
+    height: 50px;
+    text-align:center;
+    font-size: 1.5em;
+    border:none;
+}
+.scroll-style
+{
+    max-height: 216px;
+    overflow-y: scroll;
+    border-radius: 10px;
+}
+.title-button{
+    display:none;
+    position: absolute;
+    bottom:0px;
+    left: 0px;
+    text-align: center;
+    font-family: 'Righteous', cursive;
+}
+.title-button button,.delete-button{
+    border: 2px solid teal;
+    border-radius:5px ;
+    background: none;
+    color:whitesmoke;
+}
+.particular-book{
+    position: relative;
+}
+.particular-book:hover>.title-button{
+   display: block;
+   background: black;
+   color:whitesmoke;
+   opacity: 0.77;
+   border-radius:10px 
+
+}
+
+.main-section-header{
+    text-align: center;
+}
+.main-section-header h1{
+    font-size: 3em;
+    font-family: 'Righteous', cursive;
+    letter-spacing: 10px;
+    color:teal;
+}
+
+
+/* width */
+::-webkit-scrollbar {
+    width: 10px;
+  }
+  
+  /* Track */
+  ::-webkit-scrollbar-track {
+    /* box-shadow: inset 0 0 5px grey;  */
+    background-color: black;
+    border-radius: 10px;
+  }
+   
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    background: teal; 
+    border-radius: 10px;
+  }
+  
+  /* Handle on hover */
+  ::-webkit-scrollbar-thumb:hover {
+    background: rgb(0, 97, 97); 
+  }
