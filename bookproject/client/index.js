@@ -1,6 +1,7 @@
 const wantToRead = 'want-to-read';
 const read = 'read';
-const reading = 'reading'
+const reading = 'reading';
+const list = [wantToRead, read, reading]
 let userName = "";
 let fuserDataList = "";
 let fuseCurrentResult = ""
@@ -17,7 +18,7 @@ let getUser = () => {
         .then(res => {
             if (res['status'] !== 200) {
                 res.json()
-                    .then(data1 => alert(data1))
+                    .then(data1 => alertPopup(data1))
             } else {
                 res.json()
                     .then(async data => {
@@ -46,9 +47,7 @@ let addUser = () => {
             console.log(res)
             return res.json()
         })
-        .then(data => {
-            alert(data)
-        })
+        .then(data => alertPopup(data))
 }
 
 // overall book list
@@ -89,7 +88,7 @@ let userBooksList = (_isbn, listType) => {
             for (i in userBooksDetails) {
                 if (userBooksDetails[i]['isbn'] === _isbn) {
                     $('.' + listType).append(`<div class="${userBooksDetails[i]['isbn']}"><img src=${userBooksDetails[i]['imageUrl']}>
-            <button class="delete-button"  onclick="deleteBook(${userBooksDetails[i]['isbn']},'${listType}')">delete</button>
+            <div class="delete-button"><button onclick="deleteBook(${userBooksDetails[i]['isbn']},'${listType}')">Remove</button></div>
             </div>`)
                 }
             }
@@ -115,12 +114,19 @@ let addBook = (_isbn, listType) => {
         body: JSON.stringify({
             "isbn": _isbn
         })
-    }).then(res => {
+    }).then(async res => {
         if (res['status'] !== 201) {
             return res.json()
-                .then(userList => alert(userList))
+                .then(userList => alertPopup(userList))
         } else {
-            userBooksList(_isbn, listType)
+            for (i in list) {
+                if (list[i] !== listType)
+
+
+                    await deleteBook(_isbn, list[i])
+            }
+            await userBooksList(_isbn, listType)
+
         }
     })
 }
@@ -139,11 +145,11 @@ let deleteBook = (_isbn, listType) => {
         .then(() => $("." + listType + " ." + _isbn).remove())
 }
 
-let fuserOperation = async () => {
+let fuserOperation = () => {
 
     let options = {
         shouldSort: true,
-        threshold: 0.6,
+        threshold: 0.1,
         location: 0,
         distance: 100,
         maxPatternLength: 32,
@@ -153,15 +159,31 @@ let fuserOperation = async () => {
             "subtitle"
         ]
     };
-    await $("#search").keyup(() => {
+    $("#search").keyup(async () => {
 
         let searchValue = ($('#search').val());
         var fuse = new Fuse(fuserDataList, options);
         var fuseResult = fuse.search(searchValue);
         fuseCurrentResult = fuseResult;
         console.log(fuseCurrentResult)
-        $('.book-list-section').empty()
-        bookList()
+        await $('.book-list-section').empty()
+        await bookList()
     })
 
+}
+
+
+function alertPopup(errMsg) {
+    $(document).ready(function () {
+        var msg = errMsg
+        $('#background-body').show();
+        $('#text').empty();
+        $('#text').append(msg);
+        $('#confirm').click(function () {
+
+            $('#background-body').hide();
+
+        })
+
+    })
 }

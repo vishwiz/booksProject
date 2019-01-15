@@ -1,6 +1,7 @@
 const mongoose = require('mongoose');
 const Joi = require('joi');
 let books = require('./book')
+let list = ['want-to-read','reading','read']
 
 let userSchema = mongoose.Schema({
     "user": String,
@@ -147,6 +148,62 @@ module.exports.userBooksUpdate = async (_user, _isbn, checkData) => {
     }
 }
 
+// module.exports.userBooksUpdate = async (_user, _isbn, checkData) => {
+//     try {
+//         let userData = await userBooksValidation(_user, _isbn)
+//         if (!userData.hasOwnProperty('message')) {
+//             let isIsbnExist = await userData[checkData].some(element => element.isbn === _isbn)
+            
+//             console.log(isIsbnExist)
+//             if (!isIsbnExist) {
+//                 console.log(!isIsbnExist)
+//                   for(i in list){
+//                       if(list[i]!==checkData){
+                          
+//                          await userBooksDelete1(_user,_isbn,list[i])
+//                          console.log(list[i])
+//                       }else{
+//                        await userData[checkData].push({
+//                             isbn: _isbn
+//                         })
+//                         }
+                        
+//             }await userData.save();
+//             return {message:JSON.stringify('Success'),status:201}
+//         } else return {message:JSON.stringify('Already present'),status:400}
+//         } 
+//         // else return userData
+
+//     } catch (err) {
+        
+//         throw {message:JSON.stringify("Internal Server Error"),status:500}
+//     }
+// }
+// userBooksDelete1 = async (_user, _isbn, checkData) => {
+//     try {
+//         let userData = await users.findOne({
+//             user: _user
+//         })
+//         let length = userData[checkData].length;
+
+//         for (let i in userData[checkData]) {
+//             if (userData[checkData][i].isbn === _isbn) {
+//                 userData[checkData].splice(i, 1)
+//                 if (i >= userData[checkData].length) break
+//             }
+//         }
+
+//         await userData.save();
+//         if (userData[checkData].length !== length) {
+
+//             return {message:JSON.stringify('sucessfully deleted'),status:200}
+//         } 
+
+//     } catch (err) {
+
+//         throw {message:JSON.stringify("Internal Server Error"),status:500}
+//     }
+// }
 
 module.exports.userBooksDelete = async (_user, _isbn, checkData) => {
     try {

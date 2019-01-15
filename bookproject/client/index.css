@@ -1,32 +1,36 @@
-.header{
-    display:flex;
+.header {
+    display: flex;
     justify-content: space-around;
 }
+
 /* body{
     font-family: 'Pacifico', cursive; 
 }*/
 /* body , div{
     border:2px red solid;
 } */
-.login-signup-section{
+.login-signup-section {
     width: 45em;
     height: 21em;
     margin-top: 10em;
-   background-color:grey; 
-   opacity: 0.77;
-   border-radius: 20px;
+    background-color: grey;
+    opacity: 0.77;
+    border-radius: 20px;
 
 }
-.login-signup-section h1{
+
+.login-signup-section h1 {
     text-align: center;
     font-size: 4em;
     font-family: 'Righteous', cursive;
     letter-spacing: 10px;
 }
-.login-signup-button{
+
+.login-signup-button {
     text-align: right;
 }
-.login-signup-button input{
+
+.login-signup-button input {
     background-color: black;
     color: whitesmoke;
     font-size: 1.5em;
@@ -36,19 +40,24 @@
     border-radius: 10px;
     height: 2em;
 }
-.login{
-    display:flex;
+
+.login {
+    display: flex;
     justify-content: space-around;
 }
-.login-signup > #name,.login-signup > #username{
+
+.login-signup>#name,
+.login-signup>#username {
     height: 3em;
     width: 23em;
-    border:none;
+    border: none;
     border-radius: 1em;
 }
-.login-signup input{
+
+.login-signup input {
     text-align: center;
 }
+
 .fullscreen-bg {
     position: fixed;
     top: 0;
@@ -70,41 +79,51 @@
     transform: translate(-50%, -50%);
     filter: blur(8px);
 }
+
 /* body div ,section{
     border:1px solid black
 } */
-.main-section-book-list{
-    
+.main-section-book-list {
+
     display: grid;
     grid-template-columns: 1fr 1fr;
     height: calc(100vh - 10px);
 }
-.book-list-section{
-    display:grid;
+
+.book-list-section {
+    display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     grid-gap: 10px;
-   
+
 }
 
-.book-list-section img,.want-to-read img, .reading img, .read img{
+.book-list-section img,
+.want-to-read img,
+.reading img,
+.read img {
     height: 12em;
     width: 9em;
     padding-left: 0.5em;
     border-top-right-radius: 20px;
     border-bottom-right-radius: 20px;
     box-shadow: 6px 3px rgb(19, 19, 19);
-    
+
 }
-.want-to-read,.reading,.read{
+
+.want-to-read,
+.reading,
+.read {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     grid-gap: 18px;
 }
-.book-list-section h4{
-    padding:1em;
-    
+
+.book-list-section h4 {
+    padding: 1em;
+
 }
-.user-book-list h1{
+
+.user-book-list h1 {
     font-family: 'Righteous', cursive;
     color: teal;
     letter-spacing: 10px;
@@ -113,90 +132,167 @@
     background: black;
     width: 15em;
     text-align: center;
-    
+
 }
-.user-book{
-    
+
+.user-book {
+
     opacity: 0.77;
 }
-.main-section{
-    display:none;
+
+.main-section {
+    display: none;
 }
-.search-input{
+
+.search-input {
     margin-top: 29px;
     margin-bottom: 29px;
 }
-.search-input input{
+
+.search-input input {
     width: 70%;
-    border-radius:20px;
-    opacity:0.77;
+    border-radius: 20px;
+    opacity: 0.77;
     height: 50px;
-    text-align:center;
+    text-align: center;
     font-size: 1.5em;
-    border:none;
+    border: none;
 }
-.scroll-style
-{
-    max-height: 216px;
+
+.scroll-style {
+    max-height: 225px;
     overflow-y: scroll;
-    border-radius: 10px;
+    border-radius: 5px;
+    border-bottom: 2px solid teal;
+    border-left: 2px solid teal;
 }
-.title-button{
-    display:none;
+
+.title-button {
+    display: none;
     position: absolute;
-    bottom:0px;
+    bottom: 0px;
     left: 0px;
     text-align: center;
     font-family: 'Righteous', cursive;
 }
-.title-button button,.delete-button{
+
+.title-button button,
+.delete-button button,
+.logout button {
     border: 2px solid teal;
-    border-radius:5px ;
+    border-radius: 5px;
     background: none;
-    color:whitesmoke;
+    color: whitesmoke;
 }
-.particular-book{
+.delete-button{
+    text-align: right;
+}
+
+.particular-book {
     position: relative;
 }
-.particular-book:hover>.title-button{
-   display: block;
-   background: black;
-   color:whitesmoke;
-   opacity: 0.77;
-   border-radius:10px 
 
+.particular-book:hover>.title-button {
+    display: block;
+    background: black;
+    color: whitesmoke;
+    opacity: 0.77;
+    border-radius: 10px
 }
 
-.main-section-header{
+.main-section-header {
     text-align: center;
 }
-.main-section-header h1{
+
+.main-section-header h1 {
     font-size: 3em;
     font-family: 'Righteous', cursive;
     letter-spacing: 10px;
-    color:teal;
+    color: teal;
 }
 
+.logout {
+    text-align: right;
+}
+
+.logout button {
+    height: 2em;
+    width: 5em;
+    font-size: 17px;
+}
 
 /* width */
 ::-webkit-scrollbar {
     width: 10px;
-  }
-  
-  /* Track */
-  ::-webkit-scrollbar-track {
+}
+
+/* Track */
+::-webkit-scrollbar-track {
     /* box-shadow: inset 0 0 5px grey;  */
     background-color: black;
     border-radius: 10px;
-  }
-   
-  /* Handle */
-  ::-webkit-scrollbar-thumb {
-    background: teal; 
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+    background: teal;
     border-radius: 10px;
-  }
-  
-  /* Handle on hover */
-  ::-webkit-scrollbar-thumb:hover {
-    background: rgb(0, 97, 97); 
-  }
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+    background: rgb(0, 97, 97);
+}
+
+
+
+
+#background-body {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    padding-top: 196px;
+    left: 68px;
+    top: 0;
+    width: 100%;
+    height: auto;
+}
+
+
+#popups {
+    display: block;
+    width: 361px;
+    height: 211px;
+    position: relative;
+    border-radius: 10px;
+    background-color: #111111;
+    left: 29%;
+    color: whitesmoke;
+    opacity: 0.9;
+    font-size: 1.2em;
+
+}
+
+#alert-content p {
+    position: fixed;
+    margin-top: 3%;
+    margin-left: 1%;
+    font-family: 'Righteous', cursive;
+}
+
+#alert-operation {
+
+    position: absolute;
+    right: 10px;
+    bottom: 10px;
+    border-radius: 10px;
+
+}
+
+#alert-operation button {
+    background: none;
+    border: 2px solid teal;
+    padding: 8px;
+    width: 86px;
+    color: whitesmoke;
+}

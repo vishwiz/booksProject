@@ -37,24 +37,46 @@
         </section>
     </header>
     <section class="main-section">
-        <div class="main-section-header"><h1>Book Store</h1></div>
+        <div class="main-section-header">
+            <h1>Book Store</h1>
+        </div>
+        <div class="logout" onclick="location.reload()"><button>Logout</button></div>
         <div class="main-section-book-list">
-          <div>
+            <div>
                 <div class="search-input"><input type="search" id="search" placeholder="Search" onclick="fuserOperation()"></div>
                 <div class="book-list-section" id="book-list">
-                
-                    </div>
-          </div>
+
+                </div>
+            </div>
             <div class="user-book-list">
-                <div class="user-book"><h1>Want to read</h1></div>
+                <div class="user-book">
+                    <h1>Want to read</h1>
+                </div>
                 <div class="want-to-read scroll-style"></div>
-                <div class="user-book"><h1>Reading</h1></div>
+                <div class="user-book">
+                    <h1>Reading</h1>
+                </div>
                 <div class="reading scroll-style"></div>
-                <div class="user-book"><h1>Read</h1></div>
+                <div class="user-book">
+                    <h1>Read</h1>
+                </div>
                 <div class="read scroll-style"></div>
             </div>
         </div>
+
     </section>
+    <div id="background-body">
+        <div id="popups">
+            <div id="alert-content">
+                <p id="text"></p>
+            </div>
+            <div id="alert-operation">
+                <button id="confirm">OK</button>
+            </div>
+        </div>
+
+
+    </div>
 </body>
 
 </html>
